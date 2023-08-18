@@ -29,7 +29,7 @@ bool check(vector<int>pos){
 }
 int turn(int pos){
     int d = rand()%7;
-    int nothing;cin>>nothing;
+    //int nothing;cin>>nothing;
     cout<<"You rolled : "<<d<<endl;
     if(pos==0){
         if(d==1)return true;
