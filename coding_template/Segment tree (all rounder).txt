@@ -1,0 +1,56 @@
+const int N = 3e5+10;
+struct Node
+{
+    int mn,mx,sum;
+    Node(){mn=INT_MAX;mx=INT_MIN;sum=0;}
+};
+typedef struct q_ans{int sum,mx,mn;}qn;
+int a[N];
+Node tree[4*N];
+void build(int node, int st, int en) {
+    if (st == en) {
+        tree[node].sum=a[st];tree[node].mx=a[st];tree[node].mn=a[st];return;
+    }
+    int mid = (st + en) / 2;
+    build(2 * node, st, mid);
+    build(2 * node + 1, mid + 1, en);
+    tree[node].sum=tree[2*node].sum+tree[2*node+1].sum;
+    tree[node].mx=max(tree[2*node].mx,tree[2*node+1].mx);
+    tree[node].mn=min(tree[2*node].mn,tree[2*node+1].mn);
+}
+qn query(int node,int st,int en,int l,int r){
+    if(st>r || en<l){
+        qn nd;nd.mn=INT_MAX,nd.mx=INT_MIN,nd.sum=0;return nd;
+    }
+    if(st>=l && en<=r){
+        qn nd;
+        nd.sum=tree[node].sum;
+        nd.mn=tree[node].mn;
+        nd.mx=tree[node].mx;
+        return nd;
+    }
+    int mid = (st+en)/2;
+    qn a,b,c;
+    a = query(2*node,st,mid,l,r);
+    b = query(2*node+1,mid+1,en,l,r);
+    c.sum=a.sum+b.sum,c.mn=min(a.mn,b.mn),c.mx=max(a.mx,b.mx);return c;
+}
+void update(int node,int st,int en,int idx,int val){
+    if(st==en){
+        a[st]=val;
+        tree[node].sum=val;
+        tree[node].mx=val;
+        tree[node].mn=val;
+        return;
+    }
+    int mid = (st+en)/2;
+    if(idx<=mid){
+        update(2*node,st,mid,idx,val);
+    }
+    else{
+        update(2*node+1,mid+1,en,idx,val);
+    }
+    tree[node].sum=tree[2*node].sum+tree[2*node+1].sum;
+    tree[node].mx=max(tree[2*node].mx,tree[2*node+1].mx);
+    tree[node].mn=min(tree[2*node].mn,tree[2*node+1].mn);
+}

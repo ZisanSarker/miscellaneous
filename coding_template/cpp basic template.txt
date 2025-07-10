@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define SpeedUpIO ios_base::sync_with_stdio(false); cin.tie(0);
+#define int long long
+#define vi vector<int> 
+#define vc vector<char> 
+#define vpii vector< pair <int,int> > 
+#define pb push_back
+#define all(x) (x).begin(),(x).end()
+#define rall(x) (x).rbegin(),(x).rend()
+#define For(i,a,b) for(int i=a;i<=(int)b;i++)
+#define rFor(i,a,b) for(int i =a;i>=(int)b;i--)
+#define input(x) {for(auto& fff: x) cin>>fff;}
+#define print(x) {for(auto fff: x) cout<<fff<< " "; cout << "\n";}
+#define getunique(v) {sort(v.begin(),v.end()); v.erase(unique(v.begin(),v.end()),v.end());}
+#define getunique1(v) {v.erase(unique(v.begin(),v,end()),v.end());}
+#define SetBit(x, k) (x |= (1LL << k))
+#define ClearBit(x, k) (x &= ~(1LL << k))
+#define CheckBit(x, k) ((x>>k)&1)
+void solve();
+int32_t main(){
+SpeedUpIO
+    int t;	cin>>t;
+    while(t--){
+
+        solve();
+    }
+    return 0;
+}
+void solve(){
+    
+}
